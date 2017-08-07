@@ -1,16 +1,5 @@
-/**
- * Copyright (c) 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import * as React from "react";
-const PropTypes = require("prop-types");
-const ReactPropTypes = PropTypes;
-const classNames = require("classnames");
+import * as classNames from 'classnames';
 import AppLocator from "../AppLocator";
 import {RemoveTodoItemFactory} from "../usecase/RemoveAllCompletedItems";
 import {FilterTodoListFactory} from "../usecase/FilterTodoList";
@@ -25,15 +14,7 @@ export interface FooterProps {
 export interface FooterState {
 };
 
-
 class Footer extends React.Component<FooterProps, FooterState> {
-    static propTypes = {
-        allTodos: ReactPropTypes.array.isRequired
-    };
-
-    /**
-     * @return {object}
-     */
     render() {
         const allTodos = this.props.allTodos;
         const filterType = this.props.filterType;
@@ -108,11 +89,9 @@ class Footer extends React.Component<FooterProps, FooterState> {
         );
     }
 
-    /**
-     * Event handler to delete all completed TODOs
-     */
     _onClearCompletedClick = () => {
-        AppLocator.context.useCase(RemoveTodoItemFactory.create()).execute();
+        const usecase = AppLocator.context.useCase(RemoveTodoItemFactory.create());
+        usecase.execute();
     };
 }
 

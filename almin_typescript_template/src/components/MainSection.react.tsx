@@ -1,15 +1,6 @@
-/**
- * Copyright (c) 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import * as React from "react";
-const PropTypes = require("prop-types");
-const ReactPropTypes = PropTypes;
+//const PropTypes = require("prop-types");
+//const ReactPropTypes = PropTypes;
 import AppLocator from "../AppLocator";
 import {ToggleAllTodoItemFactory} from "../usecase/ToggleAllTodoItems";
 import TodoItem from "./TodoItem.react";
@@ -24,14 +15,11 @@ export interface MainSectionState {
 };
 
 class MainSection extends React.Component<MainSectionProps, MainSectionState> {
-    static propTypes = {
-        allTodos: ReactPropTypes.array.isRequired,
-        areAllComplete: ReactPropTypes.bool.isRequired
-    };
+    //static propTypes = {
+    //    allTodos: ReactPropTypes.array.isRequired,
+    //    areAllComplete: ReactPropTypes.bool.isRequired
+    //};
 
-    /**
-     * @return {object}
-     */
     render() {
         // This section should be hidden by default
         // and shown when there are todos.

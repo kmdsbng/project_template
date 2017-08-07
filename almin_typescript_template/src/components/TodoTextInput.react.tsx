@@ -1,12 +1,3 @@
-/**
- * Copyright (c) 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import * as React from "react";
 const ENTER_KEY_CODE = 13;
 
@@ -26,14 +17,6 @@ export interface TodoTextInputState {
 };
 
 export default class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputState> {
-    //static propTypes = {
-    //    className: ReactPropTypes.string,
-    //    id: ReactPropTypes.string,
-    //    placeholder: ReactPropTypes.string,
-    //    onSave: ReactPropTypes.func.isRequired,
-    //    value: ReactPropTypes.string
-    //};
-
     constructor(props) {
       super(props);
     }

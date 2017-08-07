@@ -1,16 +1,9 @@
-/**
- * Copyright (c) 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import * as React from "react";
-const PropTypes = require("prop-types");
-const ReactPropTypes = PropTypes;
-const classNames = require("classnames");
+//const PropTypes = require("prop-types");
+//const ReactPropTypes = PropTypes;
+//const classNames = require("classnames");
+
+import * as classNames from 'classnames';
 import AppLocator from "../AppLocator";
 import {UpdateTodoItemTitleFactory} from "../usecase/UpdateTodoItemTitle";
 import {ToggleTodoItemFactory} from "../usecase/ToggleTodoItem";
@@ -26,9 +19,9 @@ export interface TodoItemState {
 };
 
 class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
-    static propTypes = {
-        todo: ReactPropTypes.object.isRequired
-    };
+    //static propTypes = {
+    //    todo: ReactPropTypes.object.isRequired
+    //};
 
     state = {
         isEditing: false,

@@ -17,6 +17,7 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.0",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.13",
     "@types/react": "^15.0.35",
