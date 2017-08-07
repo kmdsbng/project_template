@@ -1,7 +1,9 @@
 "use strict";
+import { Greeter } from './domain/Greeter';
 
 function printHello() {
-  console.log('Hello, World');
+  const greeter = new Greeter('World');
+  console.log(greeter.greet());
 }
 
 printHello();

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "clean": "rm -rf dst/",
-    "start": "node dst/bundle.js",
+    "start": "yarn build && node dst/bundle.js",
     "build": "NODE_ENV=production webpack -p",
     "test": "mocha",
     "ci": "yarn test"
