@@ -3,27 +3,25 @@ const uuid = require("uuid");
 const assert = require("assert");
 import TodoItem from "./TodoItem";
 export default class TodoList {
-    id: string;
-    _items: TodoItem[];
+    todoItems: TodoItem[];
 
     constructor() {
-        this.id = uuid.v1();
-        this._items = [];
+        this.todoItems = [];
     }
 
     getAllTodoItems(): TodoItem[] {
-        return this._items;
+        return this.todoItems;
     }
 
     hasItem(id: string): boolean {
-        return this._items.some(item => {
+        return this.todoItems.some(item => {
             return item.id === id;
         });
     }
 
     getItem(id: string): TodoItem | null{
         assert(id, "need id");
-        const items = this._items.filter(item => {
+        const items = this.todoItems.filter(item => {
             return item.id === id;
         });
         if (items.length > 0) {
@@ -36,14 +34,14 @@ export default class TodoList {
         assert(updated.id, "should have {id}");
         const item = this.getItem(updated.id);
         const newItem = item.updateItem(updated);
-        const index = this._items.indexOf(item);
+        const index = this.todoItems.indexOf(item);
         assert(index !== -1, "item should contained list");
-        this._items = this._items.slice(0, index).concat(newItem, this._items.slice(index + 1));
+        this.todoItems = this.todoItems.slice(0, index).concat(newItem, this.todoItems.slice(index + 1));
         return item;
     }
 
     addItem(todoItem: TodoItem): TodoItem {
-        this._items = this._items.concat(todoItem);
+        this.todoItems = this.todoItems.concat(todoItem);
         return todoItem;
     }
 
@@ -62,8 +60,8 @@ export default class TodoList {
 
     removeItem(id: string): TodoItem | null {
         const item = this.getItem(id);
-        const index = this._items.indexOf(item);
-        this._items = this._items.slice(0, index).concat(this._items.slice(index + 1));
+        const index = this.todoItems.indexOf(item);
+        this.todoItems = this.todoItems.slice(0, index).concat(this.todoItems.slice(index + 1));
         return item;
     }
 
