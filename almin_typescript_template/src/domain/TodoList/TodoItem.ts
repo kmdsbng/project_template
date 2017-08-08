@@ -1,21 +1,26 @@
 "use strict";
-const uuid = require("uuid");
-export default class TodoItem {
-    completed: boolean;
-    title: string;
-    id: string;
+import uuid = require("uuid");
+import TodoId from './TodoId';
 
-    constructor({
-        id,
-        title,
-        completed,
-    }) {
-        this.id = id || uuid();
+export default class TodoItem {
+    id: TodoId;
+    title: string;
+    completed: boolean;
+
+    constructor(
+        id: TodoId,
+        title: string,
+        completed?: boolean
+    ) {
+        this.id = id;
         this.title = title;
-        this.completed = completed;
+        this.completed = completed || false;
     }
 
     updateItem(updated) {
-        return new TodoItem((<any>Object).assign({}, this, updated));
+        return new TodoItem(
+            updated.id || this.id,
+            updated.title || this.title,
+             updated.completed || this.completed);
     }
 }
