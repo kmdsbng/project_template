@@ -4,39 +4,24 @@ const assert = require("assert");
 import TodoItem from "./TodoItem";
 export default class TodoList {
     id: string;
-    _items: any;
+    _items: TodoItem[];
 
     constructor() {
         this.id = uuid.v1();
-        /**
-         * @type {TodoItem[]}
-         * @private
-         */
         this._items = [];
     }
 
-    /**
-     * @returns {TodoItem[]}
-     */
-    getAllTodoItems() {
+    getAllTodoItems(): TodoItem[] {
         return this._items;
     }
 
-    /**
-     * @param id
-     * @returns {boolean}
-     */
-    hasItem(id) {
+    hasItem(id: string): boolean {
         return this._items.some(item => {
             return item.id === id;
         });
     }
 
-    /**
-     * @param id
-     * @returns {TodoItem|undefined}
-     */
-    getItem(id) {
+    getItem(id: string): TodoItem | null{
         assert(id, "need id");
         const items = this._items.filter(item => {
             return item.id === id;
@@ -44,15 +29,11 @@ export default class TodoList {
         if (items.length > 0) {
             return items[0];
         }
+        return null;
     }
 
-    /**
-     * update item with updated object.
-     * @param {Object} updated
-     * @returns {TodoItem}
-     */
-    updateItem(updated) {
-        assert(updated.id !== undefined, "should have {id}");
+    updateItem(updated: any): TodoItem {
+        assert(updated.id, "should have {id}");
         const item = this.getItem(updated.id);
         const newItem = item.updateItem(updated);
         const index = this._items.indexOf(item);
@@ -61,55 +42,35 @@ export default class TodoList {
         return item;
     }
 
-    /**
-     * @param {TodoItem} todoItem
-     * @return {TodoItem}
-     */
-    addItem(todoItem) {
+    addItem(todoItem: TodoItem): TodoItem {
         this._items = this._items.concat(todoItem);
         return todoItem;
     }
 
-    /**
-     * toggle status of all items
-     */
-    toggleCompleteAll() {
+    toggleCompleteAll(): void {
         this.getAllTodoItems().forEach(item => {
             return this.toggleComplete(item.id);
         });
     }
 
-    /**
-     * toggle status of the item
-     * @param {string} id
-     * @returns {TodoItem|undefined}
-     */
-    toggleComplete(id) {
+    toggleComplete(id: string): TodoItem | null {
         const item = this.getItem(id);
         item.completed = !item.completed;
         this.updateItem(item);
         return item;
     }
 
-    /**
-     * remove item
-     * @param {string} id
-     * @returns {TodoItem|undefined}
-     */
-    removeItem(id) {
+    removeItem(id: string): TodoItem | null {
         const item = this.getItem(id);
         const index = this._items.indexOf(item);
         this._items = this._items.slice(0, index).concat(this._items.slice(index + 1));
         return item;
     }
 
-    /**
-     * remove all completed items
-     */
     removeAllCompletedItems() {
-        this.getAllTodoItems()
-        .filter(item => item.completed)
-        .forEach(item => {
+        const allTodoItems = this.getAllTodoItems();
+        const filteredItems = allTodoItems.filter(item => item.completed);
+        filteredItems.forEach(item => {
             return this.removeItem(item.id);
         });
     }
