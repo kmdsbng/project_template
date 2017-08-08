@@ -21,6 +21,6 @@ export default class TodoItem {
         return new TodoItem(
             updated.id || this.id,
             updated.title || this.title,
-             updated.completed || this.completed);
+            updated.completed || this.completed);
     }
 }
