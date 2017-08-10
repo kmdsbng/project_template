@@ -15,14 +15,14 @@ export default class TodoList {
 
     hasItem(id: string): boolean {
         return this.todoItems.some(item => {
-            return item.id === id;
+            return item.id.value === id;
         });
     }
 
     getItem(id: string): TodoItem | null{
         assert(id, "need id");
         const items = this.todoItems.filter(item => {
-            return item.id === id;
+            return item.id.value === id;
         });
         if (items.length > 0) {
             return items[0];
@@ -32,7 +32,7 @@ export default class TodoList {
 
     updateItem(updated: any): TodoItem {
         assert(updated.id, "should have {id}");
-        const item = this.getItem(updated.id);
+        const item = this.getItem(updated.id.value);
         const newItem = item.updateItem(updated);
         const index = this.todoItems.indexOf(item);
         assert(index !== -1, "item should contained list");
@@ -47,7 +47,7 @@ export default class TodoList {
 
     toggleCompleteAll(): void {
         this.getAllTodoItems().forEach(item => {
-            return this.toggleComplete(item.id);
+            return this.toggleComplete(item.id.value);
         });
     }
 
@@ -69,7 +69,7 @@ export default class TodoList {
         const allTodoItems = this.getAllTodoItems();
         const filteredItems = allTodoItems.filter(item => item.completed);
         filteredItems.forEach(item => {
-            return this.removeItem(item.id);
+            return this.removeItem(item.id.value);
         });
     }
 }

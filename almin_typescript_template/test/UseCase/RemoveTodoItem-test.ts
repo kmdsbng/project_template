@@ -2,6 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 import MemoryDB from "../../src/infra/adpter/MemoryDB";
+import TodoId from '../../src/domain/TodoList/TodoId';
 import TodoItem from "../../src/domain/TodoList/TodoItem";
 import TodoList from "../../src/domain/TodoList/TodoList";
 import {TodoListRepository} from "../../src/infra/TodoListRepository";
@@ -9,7 +10,7 @@ import {RemoveTodoItemUseCase} from "../../src/usecase/RemoveTodoItem";
 describe("RemoveTodoItemUseCase", function () {
     it("should add TodoItem with title", function (done) {
         const mockTodoList = new TodoList();
-        const todoItem = new TodoItem({ id: "dummyuid", title: "before", completed: false });
+        const todoItem = new TodoItem(new TodoId("dummyuid"), "before", false);
         mockTodoList.addItem(todoItem);
         // prepare
         const todoListRepository = new TodoListRepository(new MemoryDB());
@@ -25,6 +26,6 @@ describe("RemoveTodoItemUseCase", function () {
             done();
         });
         // When
-        useCase.execute(todoItem.id);
+        useCase.execute(todoItem.id.value);
     });
 });

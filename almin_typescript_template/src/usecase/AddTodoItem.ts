@@ -2,6 +2,7 @@
 import {UseCase} from "almin";
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 import TodoItem from "../domain/TodoList/TodoItem";
+import TodoIdFactory from '../domain/TodoList/TodoIdFactory';
 export class AddTodoItemFactory {
     static create() : AddTodoItemUseCase {
         return new AddTodoItemUseCase({
@@ -23,7 +24,8 @@ export class AddTodoItemUseCase extends UseCase {
         const todoList = todoListRepository.lastUsed();
         if (todoList === undefined)
             return;
-        const todoItem = new TodoItem({title, id: null, completed: false});
+        const todoId = new TodoIdFactory().buildId();
+        const todoItem = new TodoItem(todoId, title, false);
         todoList.addItem(todoItem);
         todoListRepository.save(todoList);
     }

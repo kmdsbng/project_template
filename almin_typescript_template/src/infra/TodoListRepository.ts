@@ -34,9 +34,10 @@ export class TodoListRepository extends Event {
      */
     lastUsed() : TodoList | undefined {
         const todoList = this._database.get(`${TodoList.name}.lastUsed`);
-        if (todoList) {
-            return this._get(todoList.id);
-        }
+        return todoList;
+        //if (todoList) {
+        //    return this._get(todoList.id);
+        //}
     }
 
     /**
