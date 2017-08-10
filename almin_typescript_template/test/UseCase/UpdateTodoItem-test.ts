@@ -23,12 +23,12 @@ describe("UpdateTodoItem", function () {
         todoListRepository.onChange(() => {
             // re-get todoList
             const storedTodoList = todoListRepository.find(mockTodoList);
-            const todoItem = storedTodoList.getItem(existTodoItem.id);
+            const todoItem = storedTodoList.getItem(existTodoItem.idValue());
             assert(todoItem);
             assert.equal(todoItem.title, titleOfUPDATING);
             done();
         });
         // When
-        useCase.execute({id: existTodoItem.id, title: titleOfUPDATING});
+        useCase.execute({id: existTodoItem.idValue(), title: titleOfUPDATING});
     });
 });

@@ -21,10 +21,10 @@ describe("RemoveTodoItemUseCase", function () {
         todoListRepository.onChange(() => {
             // re-get todoList
             const storedTodoList = todoListRepository.find(mockTodoList);
-            assert(!storedTodoList.hasItem(todoItem.id));
+            assert(!storedTodoList.hasItem(todoItem.idValue()));
             done();
         });
         // When
-        useCase.execute(todoItem.id);
+        useCase.execute(todoItem.idValue());
     });
 });

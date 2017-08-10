@@ -8,7 +8,7 @@ interface TodoItemParameter {
 }
 
 export default class TodoItem {
-    id: string;
+    private id: string;
     title: string;
     completed: boolean;
 
