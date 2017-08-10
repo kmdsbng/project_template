@@ -1,18 +1,21 @@
 "use strict";
 const uuid = require("uuid");
-export default class TodoItem {
-    completed: boolean;
-    title: string;
-    id: string;
 
-    constructor({
-        id,
-        title,
-        completed,
-    }) {
-        this.id = id || uuid();
-        this.title = title;
-        this.completed = completed;
+interface TodoItemParameter {
+    id : string,
+    title : string,
+    completed? : boolean
+}
+
+export default class TodoItem {
+    id: string;
+    title: string;
+    completed: boolean;
+
+    constructor(parameter : TodoItemParameter) {
+        this.id = parameter.id || uuid();
+        this.title = parameter.title;
+        this.completed = parameter.completed;
     }
 
     updateItem(updated) {
