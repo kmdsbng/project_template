@@ -1,5 +1,6 @@
 "use strict";
-const uuid = require("uuid");
+import uuid = require("uuid");
+import TodoId from './TodoId';
 
 interface TodoItemParameter {
     id : string,
@@ -9,11 +10,13 @@ interface TodoItemParameter {
 
 export default class TodoItem {
     private id: string;
+    todoId: TodoId;
     title: string;
     completed: boolean;
 
     constructor(parameter : TodoItemParameter) {
         this.id = parameter.id || uuid();
+        this.todoId = new TodoId(this.id);
         this.title = parameter.title;
         this.completed = parameter.completed;
     }
