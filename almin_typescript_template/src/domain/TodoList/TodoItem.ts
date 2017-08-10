@@ -18,6 +18,10 @@ export default class TodoItem {
         this.completed = parameter.completed;
     }
 
+    idValue() {
+        return this.id;
+    }
+
     updateItem(updated) {
         return new TodoItem((<any>Object).assign({}, this, updated));
     }
