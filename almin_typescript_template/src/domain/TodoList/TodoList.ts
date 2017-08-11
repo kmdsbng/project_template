@@ -1,7 +1,7 @@
 "use strict";
 import TodoId from './TodoId';
-const uuid = require("uuid");
-const assert = require("assert");
+import uuid = require("uuid");
+import assert = require("assert");
 import TodoItem from "./TodoItem";
 export default class TodoList {
     todoItems: TodoItem[];
