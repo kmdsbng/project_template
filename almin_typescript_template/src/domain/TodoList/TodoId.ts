@@ -9,6 +9,10 @@ export default class TodoId {
         Object.freeze(this);
     }
 
+    equals(other: TodoId) {
+        return this.value === other.value;
+    }
+
     checkValid(value: string) {
         if (!value) {
             throw new TypeError("Invalid id : null");
