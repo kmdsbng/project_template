@@ -40,16 +40,6 @@ export default class TodoList {
         return null;
     }
 
-    updateItem(updated: any): TodoItem {
-        assert(updated.todoId, "should have {todoId}");
-        const item = this.getItemOld(updated.todoId.value);
-        const newItem = item.updateItem(updated);
-        const index = this.todoItems.indexOf(item);
-        assert(index !== -1, "item should contained list");
-        this.todoItems = this.todoItems.slice(0, index).concat(newItem, this.todoItems.slice(index + 1));
-        return item;
-    }
-
     addItem(todoItem: TodoItem): TodoItem {
         this.todoItems = this.todoItems.concat(todoItem);
         return todoItem;
@@ -63,10 +53,24 @@ export default class TodoList {
     }
 
     toggleComplete(todoId: TodoId): TodoItem | null {
-        const item = this.getItem(todoId);
-        item.completed = !item.completed;
-        this.updateItem(item);
-        return item;
+        const todo = this.getItem(todoId);
+        const newTodo = todo.toggleCompleted();
+        this.replaceTodo(todo, newTodo);
+        return newTodo;
+    }
+
+    updateTitle(todoId: TodoId, title: string): TodoItem {
+        assert(todoId, "should have {todoId}");
+        const todo = this.getItem(todoId);
+        const newTodo = todo.updateTitle(title);
+        this.replaceTodo(todo, newTodo);
+        return newTodo;
+    }
+
+    replaceTodo(original: TodoItem, replaced: TodoItem) {
+        const index = this.todoItems.indexOf(original);
+        assert(index !== -1, "item should contained list");
+        this.todoItems = this.todoItems.slice(0, index).concat(replaced, this.todoItems.slice(index + 1));
     }
 
     removeItem(todoId: TodoId): TodoItem | null {
@@ -81,7 +85,7 @@ export default class TodoList {
         const filteredItems = allTodoItems.filter(item => item.completed);
         filteredItems.forEach(item => {
             const todoId : TodoId = item.todoId;
-            return this.removeItem(todoId);
+            this.removeItem(todoId);
         });
     }
 }

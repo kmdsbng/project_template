@@ -27,7 +27,8 @@ export class UpdateTodoItemTitleUseCase extends UseCase {
             return Promise.reject(new Error(`Not found item:${id}`));
         }
         const todoId : TodoId = new TodoId(id);
-        todoList.updateItem({todoId, title});
+        //todoList.updateItem({todoId, title});
+        todoList.updateTitle(todoId, title);
         this.todoListRepository.save(todoList);
     }
 }

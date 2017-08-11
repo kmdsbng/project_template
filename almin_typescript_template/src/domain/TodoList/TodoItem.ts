@@ -9,29 +9,29 @@ interface TodoItemParameter {
 }
 
 export default class TodoItem {
-    private id: string;
     todoId: TodoId;
     title: string;
     completed: boolean;
 
     constructor(parameter : TodoItemParameter) {
-        //this.id = parameter.id || uuid();
-        //this.todoId = new TodoId(this.id);
         this.todoId = parameter.todoId;
         this.title = parameter.title;
         this.completed = parameter.completed;
     }
 
-    //idValue() {
-    //    return this.todoId.value;
-    //}
-
-    updateItem(updated) {
-        //return new TodoItem((<any>Object).assign({}, this, updated));
+    toggleCompleted(): TodoItem {
         return new TodoItem({
-            todoId: updated.todoId || this.todoId,
-            title: updated.title || this.title,
-            completed: updated.completed || this.completed
+            todoId: this.todoId,
+            title: this.title,
+            completed: !this.completed
+        });
+    }
+
+    updateTitle(title: string): TodoItem {
+        return new TodoItem({
+            todoId: this.todoId,
+            title: title,
+            completed: this.completed
         });
     }
 }
