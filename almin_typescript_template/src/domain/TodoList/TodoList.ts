@@ -23,12 +23,6 @@ export default class TodoList {
         });
     }
 
-    getItemOld(id: string): TodoItem | null{
-        assert(id, "need id");
-        const otherTodoId = new TodoId(id);
-        return this.getItem(otherTodoId);
-    }
-
     getItem(todoId: TodoId): TodoItem | null{
         assert(todoId, "need id");
         const items = this.todoItems.filter(item => {
