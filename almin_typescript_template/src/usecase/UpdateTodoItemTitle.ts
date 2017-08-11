@@ -1,4 +1,5 @@
 "use strict";
+import TodoId from '../domain/TodoList/TodoId';
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 import {UseCase} from "almin";
 export class UpdateTodoItemTitleFactory {
@@ -25,7 +26,8 @@ export class UpdateTodoItemTitleUseCase extends UseCase {
         if (!todoList.hasItem(id)) {
             return Promise.reject(new Error(`Not found item:${id}`));
         }
-        todoList.updateItem({id, title});
+        const todoId : TodoId = new TodoId(id);
+        todoList.updateItem({todoId, title});
         this.todoListRepository.save(todoList);
     }
 }

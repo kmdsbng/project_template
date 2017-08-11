@@ -3,9 +3,11 @@
 const assert = require("power-assert");
 import TodoList from "../../src/domain/TodoList/TodoList";
 import { Context, Dispatcher } from "almin";
+import TodoId from '../../src/domain/TodoList/TodoId';
+import TodoIdFactory from '../../src/domain/TodoList/TodoIdFactory';
 import TodoItem from "../../src/domain/TodoList/TodoItem";
 import TodoStore from "../../src/store/TodoStore/TodoStore";
-import TodoState, { FilterTypes } from "../../src/store/TodoStore/TodoState";
+import { default as TodoState, FilterTypes } from '../../src/store/TodoStore/TodoState';
 import { FilterTodoListUseCase } from "../../src/usecase/FilterTodoList";
 import { TodoListRepository } from "../../src/infra/TodoListRepository";
 describe("TodoStore", function() {
@@ -19,7 +21,8 @@ describe("TodoStore", function() {
     context("when TodoList has todo", function() {
         it("should return todoState that has todo item also", function() {
             const todoList = new TodoList();
-            const todoItem = new TodoItem({ id: null, title: "Read It Later", completed: false });
+            const todoId : TodoId = new TodoIdFactory().buildId();
+            const todoItem = new TodoItem({ todoId, title: "Read It Later", completed: false });
             todoList.addItem(todoItem);
             const initialState = new TodoState({
                 items: [],
