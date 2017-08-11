@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import TodoApp from "./components/TodoApp.react";
+import TodoApp from "./components/TodoAppComponent";
 import AppLocator from "./AppLocator";
 // store
 import AppStoreGroup from "./store/AppStoreGroup";

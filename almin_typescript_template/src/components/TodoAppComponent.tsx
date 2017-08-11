@@ -1,7 +1,7 @@
 import * as React from "react";
-import Footer from "./Footer.react";
-import Header from "./Header.react";
-import MainSection from "./MainSection.react";
+import Footer from "./FooterComponent";
+import Header from "./HeaderComponent";
+import MainSection from "./MainSectionComponent";
 import {Context}  from "almin";
 
 declare type StateMap<T> = {

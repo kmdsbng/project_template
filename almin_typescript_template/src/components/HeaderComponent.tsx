@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppLocator from "../AppLocator";
 import {AddTodoItemFactory} from "../usecase/AddTodoItem";
-import TodoTextInput from "./TodoTextInput.react";
+import TodoTextInput from "./TodoTextInputComponent";
 
 class Header extends React.Component {
     render() {

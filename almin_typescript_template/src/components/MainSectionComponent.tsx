@@ -3,7 +3,7 @@ import * as React from "react";
 //const ReactPropTypes = PropTypes;
 import AppLocator from "../AppLocator";
 import {ToggleAllTodoItemFactory} from "../usecase/ToggleAllTodoItems";
-import TodoItem from "./TodoItem.react";
+import TodoItem from "./TodoItemComponent";
 
 export interface MainSectionProps {
   allTodos: any;

@@ -8,7 +8,7 @@ import AppLocator from "../AppLocator";
 import {UpdateTodoItemTitleFactory} from "../usecase/UpdateTodoItemTitle";
 import {ToggleTodoItemFactory} from "../usecase/ToggleTodoItem";
 import {RemoveTodoItemFactory} from "../usecase/RemoveTodoItem";
-import TodoTextInput from "./TodoTextInput.react";
+import TodoTextInput from "./TodoTextInputComponent";
 
 
 export interface TodoItemProps {
