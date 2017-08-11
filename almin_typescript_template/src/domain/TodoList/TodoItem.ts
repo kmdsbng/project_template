@@ -9,9 +9,9 @@ interface TodoItemParameter {
 }
 
 export default class TodoItem {
-    todoId: TodoId;
-    title: string;
-    completed: boolean;
+    readonly todoId: TodoId;
+    readonly title: string;
+    readonly completed: boolean;
 
     constructor(parameter : TodoItemParameter) {
         this.todoId = parameter.todoId;
