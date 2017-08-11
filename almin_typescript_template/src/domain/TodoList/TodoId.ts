@@ -6,6 +6,7 @@ export default class TodoId {
     constructor(value: string) {
         this.checkValid(value);
         this.value = value;
+        Object.freeze(this);
     }
 
     checkValid(value: string) {
