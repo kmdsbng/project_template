@@ -1,4 +1,5 @@
 "use strict";
+import TodoId from './TodoId';
 const uuid = require("uuid");
 const assert = require("assert");
 import TodoItem from "./TodoItem";
@@ -15,14 +16,16 @@ export default class TodoList {
 
     hasItem(id: string): boolean {
         return this.todoItems.some(item => {
-            return item.idValue() === id;
+            const todoId : TodoId = item.todoId;
+            return todoId.value === id;
         });
     }
 
     getItem(id: string): TodoItem | null{
         assert(id, "need id");
         const items = this.todoItems.filter(item => {
-            return item.idValue() === id;
+            const todoId : TodoId = item.todoId;
+            return todoId.value === id;
         });
         if (items.length > 0) {
             return items[0];
@@ -31,8 +34,8 @@ export default class TodoList {
     }
 
     updateItem(updated: any): TodoItem {
-        assert(updated.id, "should have {id}");
-        const item = this.getItem(updated.id);
+        assert(updated.todoId, "should have {todoId}");
+        const item = this.getItem(updated.todoId.value);
         const newItem = item.updateItem(updated);
         const index = this.todoItems.indexOf(item);
         assert(index !== -1, "item should contained list");
@@ -47,7 +50,8 @@ export default class TodoList {
 
     toggleCompleteAll(): void {
         this.getAllTodoItems().forEach(item => {
-            return this.toggleComplete(item.idValue());
+            const todoId : TodoId = item.todoId;
+            return this.toggleComplete(todoId.value);
         });
     }
 
@@ -69,7 +73,8 @@ export default class TodoList {
         const allTodoItems = this.getAllTodoItems();
         const filteredItems = allTodoItems.filter(item => item.completed);
         filteredItems.forEach(item => {
-            return this.removeItem(item.idValue());
+            const todoId : TodoId = item.todoId;
+            return this.removeItem(todoId.value);
         });
     }
 }

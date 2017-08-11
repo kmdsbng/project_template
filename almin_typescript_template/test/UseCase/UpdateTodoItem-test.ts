@@ -3,6 +3,7 @@
 const assert = require("power-assert");
 import MemoryDB from "../../src/infra/adpter/MemoryDB";
 import TodoList from "../../src/domain/TodoList/TodoList";
+import TodoId from '../../src/domain/TodoList/TodoId';
 import TodoItem from "../../src/domain/TodoList/TodoItem";
 import TodoIdFactory from '../../src/domain/TodoList/TodoIdFactory';
 import {TodoListRepository} from "../../src/infra/TodoListRepository";
@@ -25,12 +26,14 @@ describe("UpdateTodoItem", function () {
         todoListRepository.onChange(() => {
             // re-get todoList
             const storedTodoList = todoListRepository.find(mockTodoList);
-            const todoItem = storedTodoList.getItem(existTodoItem.idValue());
+            const todoIdForCompare : TodoId = existTodoItem.todoId;
+            const todoItem = storedTodoList.getItem(todoIdForCompare.value);
             assert(todoItem);
             assert.equal(todoItem.title, titleOfUPDATING);
             done();
         });
         // When
-        useCase.execute({id: existTodoItem.idValue(), title: titleOfUPDATING});
+        const todoIdForCompare : TodoId = existTodoItem.todoId;
+        useCase.execute({id: todoIdForCompare.value, title: titleOfUPDATING});
     });
 });

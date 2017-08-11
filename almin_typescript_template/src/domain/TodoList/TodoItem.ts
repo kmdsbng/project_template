@@ -22,9 +22,9 @@ export default class TodoItem {
         this.completed = parameter.completed;
     }
 
-    idValue() {
-        return this.todoId.value;
-    }
+    //idValue() {
+    //    return this.todoId.value;
+    //}
 
     updateItem(updated) {
         //return new TodoItem((<any>Object).assign({}, this, updated));

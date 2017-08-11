@@ -3,6 +3,7 @@
 const assert = require("power-assert");
 import MemoryDB from "../../src/infra/adpter/MemoryDB";
 import TodoIdFactory from '../../src/domain/TodoList/TodoIdFactory';
+import TodoId from '../../src/domain/TodoList/TodoId';
 import TodoItem from "../../src/domain/TodoList/TodoItem";
 import TodoList from "../../src/domain/TodoList/TodoList";
 import {TodoListRepository} from "../../src/infra/TodoListRepository";
@@ -23,10 +24,11 @@ describe("RemoveTodoItemUseCase", function () {
         todoListRepository.onChange(() => {
             // re-get todoList
             const storedTodoList = todoListRepository.find(mockTodoList);
-            assert(!storedTodoList.hasItem(todoItem.idValue()));
+            const todoId : TodoId = todoItem.todoId;
+            assert(!storedTodoList.hasItem(todoId.value));
             done();
         });
         // When
-        useCase.execute(todoItem.idValue());
+        useCase.execute(todoId.value);
     });
 });

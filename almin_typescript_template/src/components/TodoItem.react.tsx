@@ -61,7 +61,7 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
         });
         return (
             <li className={listClassName}
-                key={todo.id}>
+                key={todo.todoId.value}>
                 <div className="view">
                     <input
                         className="toggle"
@@ -80,7 +80,7 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
     }
 
     _onToggleComplete = (event) => {
-        AppLocator.context.useCase(ToggleTodoItemFactory.create()).execute(this.props.todo.id);
+        AppLocator.context.useCase(ToggleTodoItemFactory.create()).execute(this.props.todo.todoId.value);
     };
 
     _onDoubleClick = () => {
@@ -95,14 +95,14 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
      */
     _onSave = (title) => {
         AppLocator.context.useCase(UpdateTodoItemTitleFactory.create()).execute({
-            id: this.props.todo.id,
+            id: this.props.todo.todoId.value,
             title
         });
         this.setState({isEditing: false});
     };
 
     _onDestroyClick = () => {
-        AppLocator.context.useCase(RemoveTodoItemFactory.create()).execute(this.props.todo.id);
+        AppLocator.context.useCase(RemoveTodoItemFactory.create()).execute(this.props.todo.todoId.value);
     };
 }
 
