@@ -9,7 +9,7 @@ export interface TodoTextInputProps {
   className: string,
   id?: string;
   placeholder?: string;
-  onSave: (text: any) => void;
+  onSave: (text: string) => void;
   value: string
 };
 

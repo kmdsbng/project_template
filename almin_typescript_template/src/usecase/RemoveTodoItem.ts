@@ -18,7 +18,7 @@ export class RemoveTodoItemUseCase extends UseCase {
         this.todoListRepository = todoListRepository;
     }
 
-    execute(itemId : string) : any {
+    execute(itemId : string) : void {
         const todoListRepository = this.todoListRepository;
         const todoList = todoListRepository.lastUsed();
         const todoId = new TodoId(itemId);

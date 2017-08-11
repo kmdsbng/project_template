@@ -1,8 +1,10 @@
 "use strict";
 import { Store } from "almin";
 import TodoState, { FilterTypes } from "./TodoState";
+import { TodoListRepository } from "../../infra/TodoListRepository";
+
 export default class TodoStore extends Store {
-    todoListRepository: any;
+    todoListRepository: TodoListRepository;
     
     /**
      * @param {TodoListRepository} todoListRepository

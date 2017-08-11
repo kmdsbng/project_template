@@ -3,22 +3,23 @@ import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
 import MainSection from "./MainSectionComponent";
 import {Context}  from "almin";
+import TodoState from "../store/TodoStore/TodoState";
 
 declare type StateMap<T> = {
     [P in keyof T]: T[P];
 };
 
 export interface TodoAppProps {
-  appContext: Context<StateMap<{ "todoState": any; }>>;
+  appContext: Context<StateMap<{ "todoState": TodoState; }>>;
   filterType?: string;
 };
 
 export interface TodoAppState {
-    todoState: any;
+    todoState: TodoState;
 };
 
 class TodoApp extends React.Component<TodoAppProps, TodoAppState> {
-    releaseChange: any;
+    releaseChange: () => void;
 
     constructor(props) {
         super(props);

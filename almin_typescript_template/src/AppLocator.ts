@@ -2,13 +2,14 @@
 "use strict";
 
 import {Context}  from "almin";
+import TodoState from "./store/TodoStore/TodoState";
 
 declare type StateMap<T> = {
     [P in keyof T]: T[P];
 };
 
 export class AppContextLocator {
-    _context : Context<StateMap<{ "todoState": any; }>>;
+    _context : Context<StateMap<{ "todoState": TodoState; }>>;
 
     constructor() {
         /**
