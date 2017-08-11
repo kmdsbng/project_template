@@ -8,7 +8,7 @@ describe("TodoIdFactory-test", function () {
     it("generate valid id", function () {
         const factory = new TodoIdFactory();
         const todoId = factory.buildId();
-        assert(todoId.value.length > 0);
+        assert(todoId['value'].length > 0);
     });
 });
 

@@ -16,16 +16,23 @@ export default class TodoList {
 
     hasItem(id: string): boolean {
         return this.todoItems.some(item => {
-            const todoId : TodoId = item.todoId;
-            return todoId.value === id;
+            const todoId = item.todoId;
+            const otherTodoId = new TodoId(id);
+            return todoId.equals(otherTodoId);
         });
     }
 
-    getItem(id: string): TodoItem | null{
+    getItemOld(id: string): TodoItem | null{
         assert(id, "need id");
+        const otherTodoId = new TodoId(id);
+        return this.getItem(otherTodoId);
+    }
+
+    getItem(todoId: TodoId): TodoItem | null{
+        assert(todoId, "need id");
         const items = this.todoItems.filter(item => {
-            const todoId : TodoId = item.todoId;
-            return todoId.value === id;
+            const todoId = item.todoId;
+            return todoId.equals(todoId);
         });
         if (items.length > 0) {
             return items[0];
@@ -35,7 +42,7 @@ export default class TodoList {
 
     updateItem(updated: any): TodoItem {
         assert(updated.todoId, "should have {todoId}");
-        const item = this.getItem(updated.todoId.value);
+        const item = this.getItemOld(updated.todoId.value);
         const newItem = item.updateItem(updated);
         const index = this.todoItems.indexOf(item);
         assert(index !== -1, "item should contained list");
@@ -51,19 +58,19 @@ export default class TodoList {
     toggleCompleteAll(): void {
         this.getAllTodoItems().forEach(item => {
             const todoId : TodoId = item.todoId;
-            return this.toggleComplete(todoId.value);
+            return this.toggleComplete(todoId);
         });
     }
 
-    toggleComplete(id: string): TodoItem | null {
-        const item = this.getItem(id);
+    toggleComplete(todoId: TodoId): TodoItem | null {
+        const item = this.getItem(todoId);
         item.completed = !item.completed;
         this.updateItem(item);
         return item;
     }
 
-    removeItem(id: string): TodoItem | null {
-        const item = this.getItem(id);
+    removeItem(todoId: TodoId): TodoItem | null {
+        const item = this.getItem(todoId);
         const index = this.todoItems.indexOf(item);
         this.todoItems = this.todoItems.slice(0, index).concat(this.todoItems.slice(index + 1));
         return item;
@@ -74,7 +81,7 @@ export default class TodoList {
         const filteredItems = allTodoItems.filter(item => item.completed);
         filteredItems.forEach(item => {
             const todoId : TodoId = item.todoId;
-            return this.removeItem(todoId.value);
+            return this.removeItem(todoId);
         });
     }
 }

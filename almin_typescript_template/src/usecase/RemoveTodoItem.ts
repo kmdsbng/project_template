@@ -1,4 +1,5 @@
 "use strict";
+import TodoId from '../domain/TodoList/TodoId';
 import {UseCase} from "almin";
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 export class RemoveTodoItemFactory {
@@ -20,13 +21,14 @@ export class RemoveTodoItemUseCase extends UseCase {
     execute(itemId : string) : any {
         const todoListRepository = this.todoListRepository;
         const todoList = todoListRepository.lastUsed();
+        const todoId = new TodoId(itemId);
         if (todoList === undefined) {
             return;
         }
         if (!todoList.hasItem(itemId)) {
             return this.throwError(new Error(`Not found item:${itemId}`));
         }
-        todoList.removeItem(itemId);
+        todoList.removeItem(todoId);
         todoListRepository.save(todoList);
     }
 }
