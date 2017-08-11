@@ -3,6 +3,7 @@ import TodoId from './TodoId';
 import uuid = require("uuid");
 import assert = require("assert");
 import TodoItem from "./TodoItem";
+
 export default class TodoList {
     todoItems: TodoItem[];
 
@@ -40,31 +41,28 @@ export default class TodoList {
         return null;
     }
 
-    addItem(todoItem: TodoItem): TodoItem {
+    addItem(todoItem: TodoItem): void {
         this.todoItems = this.todoItems.concat(todoItem);
-        return todoItem;
     }
 
     toggleCompleteAll(): void {
         this.getAllTodoItems().forEach(item => {
             const todoId : TodoId = item.todoId;
-            return this.toggleComplete(todoId);
+            this.toggleComplete(todoId);
         });
     }
 
-    toggleComplete(todoId: TodoId): TodoItem | null {
+    toggleComplete(todoId: TodoId): void{
         const todo = this.getItem(todoId);
         const newTodo = todo.toggleCompleted();
         this.replaceTodo(todo, newTodo);
-        return newTodo;
     }
 
-    updateTitle(todoId: TodoId, title: string): TodoItem {
+    updateTitle(todoId: TodoId, title: string): void {
         assert(todoId, "should have {todoId}");
         const todo = this.getItem(todoId);
         const newTodo = todo.updateTitle(title);
         this.replaceTodo(todo, newTodo);
-        return newTodo;
     }
 
     replaceTodo(original: TodoItem, replaced: TodoItem) {
@@ -73,11 +71,10 @@ export default class TodoList {
         this.todoItems = this.todoItems.slice(0, index).concat(replaced, this.todoItems.slice(index + 1));
     }
 
-    removeItem(todoId: TodoId): TodoItem | null {
+    removeItem(todoId: TodoId): void {
         const item = this.getItem(todoId);
         const index = this.todoItems.indexOf(item);
         this.todoItems = this.todoItems.slice(0, index).concat(this.todoItems.slice(index + 1));
-        return item;
     }
 
     removeAllCompletedItems() {
