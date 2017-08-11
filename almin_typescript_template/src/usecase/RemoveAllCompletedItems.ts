@@ -15,9 +15,9 @@ export class RemoveTodoItemUseCase extends UseCase {
     /**
      * @param {TodoListRepository} todoListRepository
      */
-    constructor({todoListRepository}) {
+    constructor(parameter: {todoListRepository: TodoListRepository}) {
         super();
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
     execute() {

@@ -20,43 +20,42 @@ export class TodoListRepository extends Event {
      * @param id
      * @private
      */
-    _get(id) {
+    _get(id: string) {
         // Domain.<id>
         return this._database.get(`${TodoList.name}.${id}`);
     }
 
-    find(todoList) {
-        return this._get(todoList.id);
-    }
+    //find(todoList: TodoList) {
+    //    return this._get(todoList.id);
+    //}
 
     /**
      * @returns {TodoList|undefined}
      */
     lastUsed() : TodoList | undefined {
         const todoList = this._database.get(`${TodoList.name}.lastUsed`);
-        if (todoList) {
-            return this._get(todoList.id);
-        }
+        return todoList;
+        //if (todoList) {
+        //    return this._get(todoList.id);
+        //}
     }
 
     /**
      * @param {TodoList} todoList
      */
-    save(todoList) {
+    save(todoList : TodoList) {
         this._database.set(`${TodoList.name}.lastUsed`, todoList);
-        this._database.set(`${TodoList.name}.${todoList.id}`, todoList);
+        //this._database.set(`${TodoList.name}.${todoList.id}`, todoList);
+        console.log('save');
         this.emit(REPOSITORY_CHANGE, todoList);
     }
 
-    /**
-     * @param {TodoList} todoList
-     */
-    remove(todoList) {
-        this._database.delete(`${TodoList.name}.${todoList.id}`);
-        this.emit(REPOSITORY_CHANGE);
-    }
+    //remove(todoList : TodoList) {
+    //    //this._database.delete(`${TodoList.name}.${todoList.id}`);
+    //    this.emit(REPOSITORY_CHANGE);
+    //}
 
-    onChange(handler) {
+    onChange(handler: () => any) {
         this.on(REPOSITORY_CHANGE, handler);
     }
 }

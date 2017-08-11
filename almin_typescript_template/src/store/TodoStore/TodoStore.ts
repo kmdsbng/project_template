@@ -9,18 +9,18 @@ export default class TodoStore extends Store {
     /**
      * @param {TodoListRepository} todoListRepository
      */
-    constructor({ todoListRepository }) {
+    constructor(parameter: { todoListRepository: TodoListRepository }) {
         super();
         // Initial State
         this.state = new TodoState({
             items: [],
             filterType: FilterTypes.ALL_TODOS
         });
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
     // Update state
-    receivePayload(payload) {
+    receivePayload(payload: any) {
         const todoList = this.todoListRepository.lastUsed();
         if (!todoList) {
             return;

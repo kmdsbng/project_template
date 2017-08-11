@@ -9,6 +9,10 @@ export class CreateDomainUseCaseFactory {
     }
 }
 
+interface CreateDomainUseCaseParameter {
+    todoListRepository: TodoListRepository
+}
+
 export class CreateDomainUseCase extends UseCase {
     todoListRepository: TodoListRepository;
     

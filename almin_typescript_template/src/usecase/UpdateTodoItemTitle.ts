@@ -13,22 +13,19 @@ export class UpdateTodoItemTitleFactory {
 export class UpdateTodoItemTitleUseCase extends UseCase {
     todoListRepository: TodoListRepository;
 
-    /**
-     * @param {TodoListRepository} todoListRepository
-     */
-    constructor({todoListRepository}) {
+    constructor(parameter: {todoListRepository: TodoListRepository}) {
         super();
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
-    execute({id, title}) {
+    execute(parameter: {id: string, title: string}) {
         const todoList = this.todoListRepository.lastUsed();
-        if (!todoList.hasItem(id)) {
-            return Promise.reject(new Error(`Not found item:${id}`));
+        if (!todoList.hasItem(parameter.id)) {
+            return Promise.reject(new Error(`Not found item:${parameter.id}`));
         }
-        const todoId : TodoId = new TodoId(id);
+        const todoId : TodoId = new TodoId(parameter.id);
         //todoList.updateItem({todoId, title});
-        todoList.updateTitle(todoId, title);
+        todoList.updateTitle(todoId, parameter.title);
         this.todoListRepository.save(todoList);
     }
 }

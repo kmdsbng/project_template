@@ -7,7 +7,7 @@ const assert = require("assert");
 export default class MapLike {
     _store: object;
 
-    constructor(entries = []) {
+    constructor(entries : Array<any> = []) {
         this._store = Object.create(null);
         entries.forEach(entry => {
             assert(Array.isArray(entry), "new MapLike([ [key, value] ])");
@@ -38,9 +38,9 @@ export default class MapLike {
         /* eslint-disable guard-for-in */
         const keys = this.keys();
         const store = this._store;
-        const results = [];
-        keys.forEach(key => {
-            results.push(store[key]);
+        const results : any[] = [];
+        keys.forEach((key : string) => {
+            results.push((store as any)[key]);
         });
         return results;
         /* eslint-enable guard-for-in */
@@ -50,45 +50,24 @@ export default class MapLike {
      * @param {string} key
      * @returns {*}
      */
-    get(key) {
-        return this._store[key];
+    get(key : string) {
+        return (this._store as any)[key];
     }
 
-
-    /**
-     * has value of key
-     * @param key
-     * @returns {boolean}
-     */
-    has(key) {
+    has(key : string) : boolean {
         return this.get(key) != null;
     }
 
-
-    /**
-     * set value for key
-     * @param {string} key
-     * @param {*} value
-     * @return {MapLike}
-     */
-    set(key, value) {
-        this._store[key] = value;
+    set(key : string, value : any) {
+        (this._store as any)[key] = value;
         return this;
     }
 
-    /**
-     * delete value for key
-     * @param {string} key
-     */
-    delete(key){
-        this._store[key] = null;
+    delete(key : string){
+        (this._store as any)[key] = null;
     }
 
-    /**
-     * clear defined key,value
-     * @returns {MapLike}
-     */
-    clear() {
+    clear() : MapLike {
         this._store = Object.create(null);
         return this;
     }

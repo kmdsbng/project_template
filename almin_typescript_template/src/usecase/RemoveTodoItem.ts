@@ -10,17 +10,19 @@ export class RemoveTodoItemFactory {
     }
 }
 
+
 export class RemoveTodoItemUseCase extends UseCase {
     todoListRepository: TodoListRepository;
     
-    constructor({todoListRepository}) {
+    constructor(parameter: {todoListRepository: TodoListRepository}) {
         super();
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
     execute(itemId : string) : void {
         const todoListRepository = this.todoListRepository;
         const todoList = todoListRepository.lastUsed();
+        console.log('execute', todoList);
         const todoId = new TodoId(itemId);
         if (todoList === undefined) {
             return;

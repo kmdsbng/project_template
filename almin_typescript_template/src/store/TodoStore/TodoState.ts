@@ -1,23 +1,21 @@
 "use strict";
 import { FilterTodoListUseCase } from "../../usecase/FilterTodoList";
 import TodoItem from "../../domain/TodoList/TodoItem";
+import TodoList from "../../domain/TodoList/TodoList";
 export const FilterTypes = {
     ALL_TODOS: "ALL_TODOS",
     ACTIVE_TODOS: "ACTIVE_TODOS",
     COMPLETED_TODOS: "COMPLETED_TODOS"
 };
+import {DispatchedPayload} from "almin";
 
 export default class TodoState {
     items: Array<TodoItem>;
     filterType: string;
 
-    /**
-     * @param {TodoItem[]} items
-     * @param {string} filterType
-     */
-    constructor({ items, filterType }) {
-        this.items = items;
-        this.filterType = filterType;
+    constructor(parameter: { items: TodoItem[], filterType: string }) {
+        this.items = parameter.items;
+        this.filterType = parameter.filterType;
     }
 
     /**
@@ -47,22 +45,14 @@ export default class TodoState {
         });
     }
 
-    /**
-     * @param {TodoList} todoList
-     * @returns {TodoState}
-     */
-    merge(todoList) {
+    merge(todoList: TodoList) : TodoState {
         const items = todoList.getAllTodoItems();
         return new TodoState(Object.assign({}, this, {
             items
         }));
     }
 
-    /**
-     * @param {DispatcherPayload} payload
-     * @returns {TodoState}
-     */
-    reduce(payload) {
+    reduce(payload: any): TodoState {
         switch (payload.type) {
             case FilterTodoListUseCase.name:
                 return new TodoState(Object.assign({}, this, {

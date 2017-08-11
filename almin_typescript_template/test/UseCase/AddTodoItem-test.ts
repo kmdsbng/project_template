@@ -19,7 +19,7 @@ describe("AddTodoItem", function () {
         // Then
         todoListRepository.onChange(() => {
             // re-get todoList
-            const storedTodoList = todoListRepository.find(mockTodoList);
+            const storedTodoList = todoListRepository.lastUsed();
             const todoItem = storedTodoList.getAllTodoItems()[0];
             assert.equal(todoItem.title, titleOfAdding);
         });

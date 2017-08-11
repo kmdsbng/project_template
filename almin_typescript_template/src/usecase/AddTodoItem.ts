@@ -11,15 +11,19 @@ export class AddTodoItemFactory {
     }
 }
 
+interface AddTodoItemUseCaseParameter {
+    todoListRepository: TodoListRepository
+}
+
 export class AddTodoItemUseCase extends UseCase {
     todoListRepository: TodoListRepository;
 
-    constructor({todoListRepository: TodoListRepository}) {
+    constructor(parameter: AddTodoItemUseCaseParameter) {
         super();
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
-    execute(title) {
+    execute(title : string) {
         const todoListRepository = this.todoListRepository;
         const todoList = todoListRepository.lastUsed();
         if (todoList === undefined)

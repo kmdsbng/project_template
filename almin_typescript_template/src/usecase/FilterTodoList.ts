@@ -8,7 +8,7 @@ export class FilterTodoListFactory {
 }
 
 export class FilterTodoListUseCase extends UseCase {
-    execute(filterType) : void {
+    execute(filterType: string) : void {
         this.dispatch(<DispatchedPayload>{
             type: FilterTodoListUseCase.name,
             filterType
