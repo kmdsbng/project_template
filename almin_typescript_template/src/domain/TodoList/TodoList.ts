@@ -31,8 +31,8 @@ export default class TodoList {
     getItem(todoId: TodoId): TodoItem | null{
         assert(todoId, "need id");
         const items = this.todoItems.filter(item => {
-            const todoId = item.todoId;
-            return todoId.equals(todoId);
+            const todoIdOfItem = item.todoId;
+            return todoIdOfItem.equals(todoId);
         });
         if (items.length > 0) {
             return items[0];

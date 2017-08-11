@@ -1,20 +1,22 @@
-import * as React from "react";
+import * as React from 'react';
+import TodoItem from '../domain/TodoList/TodoItem';
+import TodoState from '../store/TodoStore/TodoState';
 //const PropTypes = require("prop-types");
 //const ReactPropTypes = PropTypes;
 import AppLocator from "../AppLocator";
 import {ToggleAllTodoItemFactory} from "../usecase/ToggleAllTodoItems";
-import TodoItem from "./TodoItemComponent";
+import TodoItemComponent from "./TodoItemComponent";
 
 export interface MainSectionProps {
-  allTodos: any;
-  areAllComplete: any;
+  allTodos: TodoItem[];
+  areAllComplete: boolean;
 };
 
 export interface MainSectionState {
-    todoState: any;
+    todoState: TodoState;
 };
 
-class MainSection extends React.Component<MainSectionProps, MainSectionState> {
+class MainSectionComponent extends React.Component<MainSectionProps, MainSectionState> {
     //static propTypes = {
     //    allTodos: ReactPropTypes.array.isRequired,
     //    areAllComplete: ReactPropTypes.bool.isRequired
@@ -29,7 +31,7 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
 
         const allTodos = this.props.allTodos;
         const todos = allTodos.map(todo => {
-            return <TodoItem key={todo.todoId.value} todo={todo}/>;
+            return <TodoItemComponent key={todo.todoId.value} todo={todo}/>;
         });
         return (
             <section id="main">
@@ -53,4 +55,4 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
     };
 }
 
-export default MainSection;
+export default MainSectionComponent;

@@ -10,7 +10,7 @@ export default class TodoId {
     }
 
     equals(other: TodoId) {
-        return this.value === other.value;
+        return this.value == other.value;
     }
 
     checkValid(value: string) {

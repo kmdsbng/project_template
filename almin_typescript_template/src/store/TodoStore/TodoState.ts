@@ -24,7 +24,7 @@ export default class TodoState {
      * if all items is completed, return true
      * @returns {boolean}
      */
-    get areAllComplete() {
+    get areAllComplete() : boolean {
         return this.items.every(item => {
             return item.completed;
         });
@@ -34,7 +34,7 @@ export default class TodoState {
      * return items in current filterType
      * @returns {Array.<TodoItem>}
      */
-    get displayItems() {
+    get displayItems() : TodoItem[] {
         return this.items.filter(item => {
             switch (this.filterType) {
                 case FilterTypes.ACTIVE_TODOS:

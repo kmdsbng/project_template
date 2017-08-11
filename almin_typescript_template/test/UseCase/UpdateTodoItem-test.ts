@@ -25,9 +25,9 @@ describe("UpdateTodoItem", function () {
         // Then
         todoListRepository.onChange(() => {
             // re-get todoList
-            const storedTodoList = todoListRepository.find(mockTodoList);
+            const storedTodoList : TodoList = todoListRepository.find(mockTodoList);
             const todoIdForCompare : TodoId = existTodoItem.todoId;
-            const todoItem = storedTodoList.getItem(todoIdForCompare.value);
+            const todoItem = storedTodoList.getItem(todoIdForCompare);
             assert(todoItem);
             assert.equal(todoItem.title, titleOfUPDATING);
             done();

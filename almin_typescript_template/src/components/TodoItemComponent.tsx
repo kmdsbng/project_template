@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import TodoItem from '../domain/TodoList/TodoItem';
 //const PropTypes = require("prop-types");
 //const ReactPropTypes = PropTypes;
 //const classNames = require("classnames");
@@ -12,13 +13,13 @@ import TodoTextInput from "./TodoTextInputComponent";
 
 
 export interface TodoItemProps {
-  todo: any;
+  todo: TodoItem;
 };
 
 export interface TodoItemState {
 };
 
-class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
+class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
     //static propTypes = {
     //    todo: ReactPropTypes.object.isRequired
     //};
@@ -106,4 +107,4 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
     };
 }
 
-export default TodoItem;
+export default TodoItemComponent;

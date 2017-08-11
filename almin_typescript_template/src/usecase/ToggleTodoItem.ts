@@ -1,4 +1,5 @@
 "use strict";
+import TodoId from '../domain/TodoList/TodoId';
 import {UseCase} from "almin";
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 export class ToggleTodoItemFactory {
@@ -20,9 +21,10 @@ export class ToggleTodoItemUseCase extends UseCase {
         this.todoListRepository = todoListRepository;
     }
 
-    execute(itemId) {
+    execute(todoIdValue: string) {
         const todoList = this.todoListRepository.lastUsed();
-        todoList.toggleComplete(itemId);
+        const todoId = new TodoId(todoIdValue);
+        todoList.toggleComplete(todoId);
         this.todoListRepository.save(todoList);
     }
 }
