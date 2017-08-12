@@ -48,6 +48,8 @@ export default class TodoList {
 
     toggleComplete(todoId: TodoId): void{
         const todo = this.getItem(todoId);
+        if (todo == null)
+            return;
         const newTodo = todo.toggleCompleted();
         this.replaceTodo(todo, newTodo);
     }
@@ -55,6 +57,8 @@ export default class TodoList {
     updateTitle(todoId: TodoId, title: string): void {
         assert(todoId, "should have {todoId}");
         const todo = this.getItem(todoId);
+        if (todo == null)
+            return;
         const newTodo = todo.updateTitle(title);
         this.replaceTodo(todo, newTodo);
     }
@@ -67,6 +71,8 @@ export default class TodoList {
 
     removeItem(todoId: TodoId): void {
         const item = this.getItem(todoId);
+        if (item == null)
+            return;
         const index = this.todoItems.indexOf(item);
         this.todoItems = this.todoItems.slice(0, index).concat(this.todoItems.slice(index + 1));
     }

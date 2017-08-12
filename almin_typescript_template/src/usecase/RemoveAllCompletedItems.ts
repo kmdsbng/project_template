@@ -22,6 +22,8 @@ export class RemoveTodoItemUseCase extends UseCase {
 
     execute() {
         const todoList = this.todoListRepository.lastUsed();
+        if (todoList == null)
+            return;
         todoList.removeAllCompletedItems();
         this.todoListRepository.save(todoList);
     }

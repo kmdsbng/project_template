@@ -20,6 +20,8 @@ export class UpdateTodoItemTitleUseCase extends UseCase {
 
     execute(parameter: {id: string, title: string}) {
         const todoList = this.todoListRepository.lastUsed();
+        if (todoList == null)
+            return;
         if (!todoList.hasItem(parameter.id)) {
             return Promise.reject(new Error(`Not found item:${parameter.id}`));
         }

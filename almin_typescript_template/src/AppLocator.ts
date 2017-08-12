@@ -9,20 +9,19 @@ declare type StateMap<T> = {
 };
 
 export class AppContextLocator {
-    _context : Context<StateMap<{ "todoState": TodoState; }>>;
+    _context : Context<StateMap<{ "todoState": TodoState; }>> | null;
 
     constructor() {
-        /**
-         * @type {Context}
-         * @private
-         */
         this._context = null;
     }
 
     /**
      * @returns {Context}
      */
-    get context() {
+    get context(): Context<StateMap<{ "todoState": TodoState; }>> {
+        if (this._context == null) {
+            throw new TypeError("Error: context is null");
+        }
         return this._context;
     }
 

@@ -5,7 +5,7 @@ import TodoId from './TodoId';
 interface TodoItemParameter {
     todoId : TodoId,
     title : string,
-    completed? : boolean
+    completed : boolean
 }
 
 export default class TodoItem {

@@ -24,6 +24,8 @@ export class ToggleTodoItemUseCase extends UseCase {
     execute(todoIdValue: string) {
         const todoList = this.todoListRepository.lastUsed();
         const todoId = new TodoId(todoIdValue);
+        if (todoList == null)
+            return;
         todoList.toggleComplete(todoId);
         this.todoListRepository.save(todoList);
     }
