@@ -25,11 +25,15 @@ describe("UpdateTodoItem", function () {
         // Then
         todoListRepository.onChange(() => {
             // re-get todoList
-            const storedTodoList : TodoList = todoListRepository.lastUsed();
+            const storedTodoList = todoListRepository.lastUsed();
+            if (storedTodoList == null)
+                throw new TypeError("null returned");
             const todoIdForCompare : TodoId = existTodoItem.todoId;
             const todoItem = storedTodoList.getItem(todoIdForCompare);
             assert(todoItem);
-            assert.equal(todoItem.title, titleOfUPDATING);
+            if (todoItem == null)
+                throw new TypeError("null returned");
+            assert.equal(todoItem.titleValue, titleOfUPDATING);
             done();
         });
         // When

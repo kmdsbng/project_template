@@ -20,8 +20,10 @@ describe("AddTodoItem", function () {
         todoListRepository.onChange(() => {
             // re-get todoList
             const storedTodoList = todoListRepository.lastUsed();
+            if (storedTodoList == null)
+                throw new TypeError("null returned");
             const todoItem = storedTodoList.getAllTodoItems()[0];
-            assert.equal(todoItem.title, titleOfAdding);
+            assert.equal(todoItem.titleValue, titleOfAdding);
         });
         // When
         useCase.execute(titleOfAdding);

@@ -47,7 +47,7 @@ class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
                 <TodoTextInput
                     className="edit"
                     onSave={this._onSave}
-                    value={todo.title}
+                    value={todo.title.value}
                 />;
         }
 
@@ -71,7 +71,7 @@ class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
                         onChange={this._onToggleComplete}
                     />
                     <label onDoubleClick={this._onDoubleClick}>
-                        {todo.title}
+                        {todo.title.value}
                     </label>
                     <button className="destroy" onClick={this._onDestroyClick}/>
                 </div>

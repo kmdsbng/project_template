@@ -6,10 +6,6 @@ import chai = require('chai');
 import TodoId from '../../src/domain/TodoList/TodoId';
 
 describe("TodoId-test", function () {
-    it("invalid id : null", function () {
-        chai.expect(() => {new TodoId(null)}).to.throw(TypeError)
-    });
-
     it("invalid id : blank", function () {
         chai.expect(() => {new TodoId("")}).to.throw(TypeError)
     });

@@ -22,7 +22,7 @@ describe("TodoStore", function() {
         it("should return todoState that has todo item also", function() {
             const todoList = new TodoList();
             const todoId : TodoId = new TodoIdFactory().buildId();
-            const todoItem = new TodoItem({ todoId, title: "Read It Later", completed: false });
+            const todoItem = new TodoItem({ todoId, titleValue: "Read It Later", completed: false });
             todoList.addItem(todoItem);
             const initialState = new TodoState({
                 items: [],
@@ -32,7 +32,7 @@ describe("TodoStore", function() {
             const todoState = initialState.merge(todoList);
             assert.equal(todoState.items.length, 1);
             const [actualTodoItem] = todoState.items;
-            assert.equal(actualTodoItem.title, "Read It Later");
+            assert.equal(actualTodoItem.titleValue, "Read It Later");
         });
     });
     context("when dispatch events", function() {

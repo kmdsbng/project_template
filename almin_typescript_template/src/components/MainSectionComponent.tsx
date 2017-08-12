@@ -17,10 +17,6 @@ export interface MainSectionState {
 };
 
 class MainSectionComponent extends React.Component<MainSectionProps, MainSectionState> {
-    //static propTypes = {
-    //    allTodos: ReactPropTypes.array.isRequired,
-    //    areAllComplete: ReactPropTypes.bool.isRequired
-    //};
 
     render() {
         // This section should be hidden by default
@@ -31,6 +27,7 @@ class MainSectionComponent extends React.Component<MainSectionProps, MainSection
 
         const allTodos = this.props.allTodos;
         const todos = allTodos.map(todo => {
+            console.log(`render todo ${todo.todoId.value}`);
             return <TodoItemComponent key={todo.todoId.value} todo={todo}/>;
         });
         return (

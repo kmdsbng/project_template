@@ -29,7 +29,8 @@ export class AddTodoItemUseCase extends UseCase {
         if (todoList === undefined)
             return;
         const todoId = new TodoIdFactory().buildId();
-        const todoItem = new TodoItem({title, todoId: todoId, completed: false});
+        const todoItem = new TodoItem({titleValue: title, todoId: todoId, completed: false});
+        console.log('AddTodoItem');
         todoList.addItem(todoItem);
         todoListRepository.save(todoList);
     }

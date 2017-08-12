@@ -22,10 +22,10 @@ describe("RemoveTodoItemUseCase", function () {
         });
         // Then
         todoListRepository.onChange(() => {
-            console.log(1);
             // re-get todoList
             const storedTodoList = todoListRepository.lastUsed();
-            console.log(2);
+            if (storedTodoList == null)
+                throw new TypeError("null returned");
             const todoId : TodoId = todoItem.todoId;
             assert(!storedTodoList.hasItem(todoId.value));
             done();
