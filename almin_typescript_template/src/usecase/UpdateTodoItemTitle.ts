@@ -2,6 +2,8 @@
 import TodoId from '../domain/TodoList/TodoId';
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 import {UseCase} from "almin";
+import TodoTitle from "../domain/TodoList/TodoTitle";
+
 export class UpdateTodoItemTitleFactory {
     static create() {
         return new UpdateTodoItemTitleUseCase({
@@ -27,7 +29,8 @@ export class UpdateTodoItemTitleUseCase extends UseCase {
         }
         const todoId : TodoId = new TodoId(parameter.id);
         //todoList.updateItem({todoId, title});
-        todoList.updateTitle(todoId, parameter.title);
+        const todoTitle = new TodoTitle(parameter.title);
+        todoList.updateTitle(todoId, todoTitle);
         this.todoListRepository.save(todoList);
     }
 }

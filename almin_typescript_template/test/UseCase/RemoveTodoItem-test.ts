@@ -8,11 +8,14 @@ import TodoItem from "../../src/domain/TodoList/TodoItem";
 import TodoList from "../../src/domain/TodoList/TodoList";
 import {TodoListRepository} from "../../src/infra/TodoListRepository";
 import {RemoveTodoItemUseCase} from "../../src/usecase/RemoveTodoItem";
+import TodoTitle from "../../src/domain/TodoList/TodoTitle";
+
 describe("RemoveTodoItemUseCase", function () {
     it("should add TodoItem with title", function (done) {
         const mockTodoList = new TodoList();
         const todoId = new TodoIdFactory().buildId();
-        const todoItem = new TodoItem({ todoId: todoId, title: "before", completed: false });
+        const todoTitle = new TodoTitle("before");
+        const todoItem = new TodoItem({ todoId: todoId, title: todoTitle, completed: false });
         mockTodoList.addItem(todoItem);
         // prepare
         const todoListRepository = new TodoListRepository(new MemoryDB());
@@ -30,7 +33,6 @@ describe("RemoveTodoItemUseCase", function () {
             assert(!storedTodoList.hasItem(todoId.value));
             done();
         });
-        console.log(0);
         // When
         useCase.execute(todoId.value);
     });

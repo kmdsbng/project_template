@@ -5,15 +5,18 @@ const assert = require("power-assert");
 import TodoItem from '../../src/domain/TodoList/TodoItem';
 import TodoId from '../../src/domain/TodoList/TodoId';
 import TodoIdFactory from '../../src/domain/TodoList/TodoIdFactory';
+import TodoTitle from "../../src/domain/TodoList/TodoTitle";
 
 function createTodoList() {
     const todoList = new TodoList();
     const todoId : TodoId = new TodoId("todoId1");
-    const todoItem = new TodoItem({ todoId, titleValue: "todo1", completed: false });
+    const todoTitle = new TodoTitle("todo1");
+    const todoItem = new TodoItem({ todoId, title: todoTitle, completed: false });
     todoList.addItem(todoItem);
     
     const todoId2 : TodoId = new TodoId("todoId2");
-    const todoItem2 = new TodoItem({ todoId: todoId2, titleValue: "todo2", completed: false });
+    const todoTitle2 = new TodoTitle("todo2");
+    const todoItem2 = new TodoItem({ todoId: todoId2, title: todoTitle2, completed: false });
     todoList.addItem(todoItem2);
 
     return todoList;

@@ -46,7 +46,6 @@ export class TodoListRepository extends Event {
     save(todoList : TodoList) {
         this._database.set(`${TodoList.name}.lastUsed`, todoList);
         //this._database.set(`${TodoList.name}.${todoList.id}`, todoList);
-        console.log('save');
         this.emit(REPOSITORY_CHANGE, todoList);
     }
 

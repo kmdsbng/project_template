@@ -27,7 +27,6 @@ class MainSectionComponent extends React.Component<MainSectionProps, MainSection
 
         const allTodos = this.props.allTodos;
         const todos = allTodos.map(todo => {
-            console.log(`render todo ${todo.todoId.value}`);
             return <TodoItemComponent key={todo.todoId.value} todo={todo}/>;
         });
         return (

@@ -22,7 +22,6 @@ export class RemoveTodoItemUseCase extends UseCase {
     execute(itemId : string) : void {
         const todoListRepository = this.todoListRepository;
         const todoList = todoListRepository.lastUsed();
-        console.log('execute', todoList);
         const todoId = new TodoId(itemId);
         if (todoList === undefined) {
             return;

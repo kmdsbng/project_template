@@ -3,6 +3,7 @@ import TodoId from './TodoId';
 import uuid = require("uuid");
 import assert = require("assert");
 import TodoItem from "./TodoItem";
+import TodoTitle from "./TodoTitle";
 
 export default class TodoList {
     todoItems: TodoItem[];
@@ -54,11 +55,12 @@ export default class TodoList {
         this.replaceTodo(todo, newTodo);
     }
 
-    updateTitle(todoId: TodoId, title: string): void {
+    updateTitle(todoId: TodoId, title: TodoTitle): void {
         assert(todoId, "should have {todoId}");
         const todo = this.getItem(todoId);
         if (todo == null)
             return;
+        //const todoTitle = new TodoTitle(title);
         const newTodo = todo.updateTitle(title);
         this.replaceTodo(todo, newTodo);
     }

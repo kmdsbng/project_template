@@ -3,6 +3,8 @@ import TodoIdFactory from '../domain/TodoList/TodoIdFactory';
 import {UseCase} from "almin";
 import todoListRepository, {TodoListRepository} from "../infra/TodoListRepository";
 import TodoItem from "../domain/TodoList/TodoItem";
+import TodoTitle from "../domain/TodoList/TodoTitle";
+
 export class AddTodoItemFactory {
     static create() : AddTodoItemUseCase {
         return new AddTodoItemUseCase({
@@ -29,8 +31,8 @@ export class AddTodoItemUseCase extends UseCase {
         if (todoList === undefined)
             return;
         const todoId = new TodoIdFactory().buildId();
-        const todoItem = new TodoItem({titleValue: title, todoId: todoId, completed: false});
-        console.log('AddTodoItem');
+        const todoTitle = new TodoTitle(title);
+        const todoItem = new TodoItem({title: todoTitle, todoId: todoId, completed: false});
         todoList.addItem(todoItem);
         todoListRepository.save(todoList);
     }

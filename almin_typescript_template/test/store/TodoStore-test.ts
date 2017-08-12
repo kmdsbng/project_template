@@ -10,7 +10,9 @@ import TodoStore from "../../src/store/TodoStore/TodoStore";
 import { default as TodoState, FilterTypes } from '../../src/store/TodoStore/TodoState';
 import { FilterTodoListUseCase } from "../../src/usecase/FilterTodoList";
 import { TodoListRepository } from "../../src/infra/TodoListRepository";
-describe("TodoStore", function() {
+import TodoTitle from "../../src/domain/TodoList/TodoTitle";
+
+describe("TodoStore", function () {
     it("should return TodoState instance", function() {
         const todoListRepository = new TodoListRepository();
         const store = new TodoStore({ todoListRepository });
@@ -22,7 +24,8 @@ describe("TodoStore", function() {
         it("should return todoState that has todo item also", function() {
             const todoList = new TodoList();
             const todoId : TodoId = new TodoIdFactory().buildId();
-            const todoItem = new TodoItem({ todoId, titleValue: "Read It Later", completed: false });
+            const todoTitle = new TodoTitle("Read It Later");
+            const todoItem = new TodoItem({ todoId, title: todoTitle, completed: false });
             todoList.addItem(todoItem);
             const initialState = new TodoState({
                 items: [],

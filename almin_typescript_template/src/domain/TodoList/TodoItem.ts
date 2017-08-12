@@ -3,9 +3,9 @@ import uuid = require("uuid");
 import TodoId from './TodoId';
 import TodoTitle from "./TodoTitle";
 
-interface TodoItemParameter {
+export interface TodoItemParameter {
     todoId : TodoId,
-    titleValue : string,
+    title: TodoTitle,
     completed : boolean
 }
 
@@ -16,7 +16,7 @@ export default class TodoItem {
 
     constructor(parameter : TodoItemParameter) {
         this.todoId = parameter.todoId;
-        this.title = new TodoTitle(parameter.titleValue);
+        this.title = parameter.title;
         this.completed = parameter.completed;
     }
 
@@ -27,15 +27,15 @@ export default class TodoItem {
     toggleCompleted(): TodoItem {
         return new TodoItem({
             todoId: this.todoId,
-            titleValue: this.titleValue,
+            title: this.title,
             completed: !this.completed
         });
     }
 
-    updateTitle(title: string): TodoItem {
+    updateTitle(title: TodoTitle): TodoItem {
         return new TodoItem({
             todoId: this.todoId,
-            titleValue: title,
+            title: title,
             completed: this.completed
         });
     }
