@@ -21,7 +21,7 @@ export interface TodoAppState {
 class TodoApp extends React.Component<TodoAppProps, TodoAppState> {
     releaseChange: () => void;
 
-    constructor(props) {
+    constructor(props : TodoAppProps) {
         super(props);
         const appContext = props.appContext;
         this.state = appContext.getState();

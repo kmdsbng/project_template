@@ -42,8 +42,8 @@ class Footer extends React.Component<FooterProps, FooterState> {
                 </button>;
         }
 
-        const filterByType = (type) => {
-            return event => {
+        const filterByType = (type : string) => {
+            return (event : React.FormEvent<HTMLElement>) => {
                 event.preventDefault();
                 AppLocator.context.useCase(FilterTodoListFactory.create()).execute(type);
             };

@@ -17,7 +17,7 @@ export interface TodoTextInputState {
 };
 
 export default class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputState> {
-    constructor(props) {
+    constructor(props: TodoTextInputProps) {
       super(props);
     }
 
@@ -57,16 +57,16 @@ export default class TodoTextInput extends React.Component<TodoTextInputProps, T
     /**
      * @param {object} event
      */
-    _onChange = (/*object*/ event) => {
+    _onChange = (/*object*/ event: React.FormEvent<HTMLInputElement>) => {
         this.setState({
-            value: event.target.value
+            value: event.currentTarget.value
         });
     };
 
     /**
      * @param  {object} event
      */
-    _onKeyDown = (event) => {
+    _onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
         if (event.keyCode === ENTER_KEY_CODE) {
             this._save();
         }

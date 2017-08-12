@@ -16,9 +16,9 @@ interface CreateDomainUseCaseParameter {
 export class CreateDomainUseCase extends UseCase {
     todoListRepository: TodoListRepository;
     
-    constructor({todoListRepository : TodoListRepository}) {
+    constructor(parameter: {todoListRepository : TodoListRepository}) {
         super();
-        this.todoListRepository = todoListRepository;
+        this.todoListRepository = parameter.todoListRepository;
     }
 
     execute() : void {

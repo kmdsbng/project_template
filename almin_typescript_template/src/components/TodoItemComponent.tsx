@@ -29,8 +29,8 @@ class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
         completed: false
     };
 
-    componentWillReceiveProps(nextPros, nextState) {
-        const todo = nextPros.todo;
+    componentWillReceiveProps(nextProps: TodoItemProps, nextState: TodoItemState) {
+        const todo = nextProps.todo;
         this.setState({
             completed: todo.completed
         });
@@ -80,7 +80,7 @@ class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
         );
     }
 
-    _onToggleComplete = (event) => {
+    _onToggleComplete = (event: React.FormEvent<HTMLElement>) => {
         AppLocator.context.useCase(ToggleTodoItemFactory.create()).execute(this.props.todo.todoId.value);
     };
 
@@ -94,7 +94,7 @@ class TodoItemComponent extends React.Component<TodoItemProps, TodoItemState> {
      * in different ways.
      * @param  {string} title
      */
-    _onSave = (title) => {
+    _onSave = (title : string) => {
         AppLocator.context.useCase(UpdateTodoItemTitleFactory.create()).execute({
             id: this.props.todo.todoId.value,
             title
