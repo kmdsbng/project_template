@@ -1,7 +1,7 @@
 "use strict";
 import TodoId from './TodoId';
 import uuid = require("uuid");
-import assert = require("assert");
+//import assert = require("assert");
 import TodoItem from "./TodoItem";
 import TodoTitle from "./TodoTitle";
 
@@ -25,7 +25,7 @@ export default class TodoList {
     }
 
     getItem(todoId: TodoId): TodoItem | null{
-        assert(todoId, "need id");
+        //assert(todoId, "need id");
         const items = this.todoItems.filter(item => {
             const todoIdOfItem = item.todoId;
             return todoIdOfItem.equals(todoId);
@@ -56,7 +56,7 @@ export default class TodoList {
     }
 
     updateTitle(todoId: TodoId, title: TodoTitle): void {
-        assert(todoId, "should have {todoId}");
+        //assert(todoId, "should have {todoId}");
         const todo = this.getItem(todoId);
         if (todo == null)
             return;
@@ -67,7 +67,7 @@ export default class TodoList {
 
     replaceTodo(original: TodoItem, replaced: TodoItem) {
         const index = this.todoItems.indexOf(original);
-        assert(index !== -1, "item should contained list");
+        //assert(index !== -1, "item should contained list");
         this.todoItems = this.todoItems.slice(0, index).concat(replaced, this.todoItems.slice(index + 1));
     }
 

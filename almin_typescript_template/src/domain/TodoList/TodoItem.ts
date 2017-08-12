@@ -6,6 +6,7 @@ import TodoTitle from "./TodoTitle";
 export interface TodoItemParameter {
     todoId : TodoId,
     title: TodoTitle,
+    titleValue: string,
     completed : boolean
 }
 
