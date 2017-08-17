@@ -1,7 +1,7 @@
 "use strict";
 import test from 'ava';
 import uuid = require("uuid");
-import TodoId from 'domain/TodoList/TodoId';
+import TodoId from '../../src/domain/TodoList/TodoId';
 
 test("TodoId-test : invalid id : null", (t) => {
   t.throws(() => {new TodoId(null)});
@@ -10,7 +10,6 @@ test("TodoId-test : invalid id : null", (t) => {
 test("TodoId-test : invalid id : blank", (t) => {
   t.throws(() => {new TodoId("")});
 });
-
 
 test("TodoId-test : invalid id : too long", function (t) {
     t.throws(() => {new TodoId("*".repeat(60))});
