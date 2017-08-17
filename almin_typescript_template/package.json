@@ -13,7 +13,7 @@
     "watch": "NODE_ENV=development webpack -d -w",
     "ava:tsc": "tsc --project tsconfig.ava.json",
     "ava:run": "cross-env NODE_PATH=testbuild/src ava testbuild/**/*.test.js",
-    "ava:cover": "cross-env NODE_PATH=testbuild/src nyc ava testbuild/**/*.test.js",
+    "ava:cover": "cross-env NODE_PATH=testbuild/src nyc ava 'testbuild/**/*.test.js'",
     "test": "run-s ava:tsc ava:cover"
   },
   "author": "azu",
