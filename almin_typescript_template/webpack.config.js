@@ -1,10 +1,9 @@
 const path = require("path");
 
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: "./ts/src/index.tsx",
     devtool: "source-map",
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"]
     },
     output: {
@@ -14,9 +13,16 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            {
+              test: /\.tsx?$/,
+              loader: "ts-loader"
+            },
+            {
+              enforce: "pre",
+              test: /\.js$/,
+              loader: "source-map-loader"
+            }
         ]
     }
-
 };
+

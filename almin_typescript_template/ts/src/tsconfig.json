@@ -1,17 +1,17 @@
 {
     "compilerOptions": {
-        "outDir": "./public/build/",
+        "outDir": "../../public/build/",
+        "module": "commonjs",
+        "target": "es5",
         "sourceMap": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
-        "module": "commonjs",
-        "target": "es5",
         "jsx": "react",
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "lib": ["es6", "dom"]
     },
     "include": [
-        "./src/**/*"
+        "./**/*"
     ]
 }

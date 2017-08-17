@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "../testbuild",
+    "module": "commonjs",
+    "target": "es2015",
+    "noImplicitAny": true,
+    "inlineSourceMap": true,
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "*",
+        "src/*"
+      ]
+    }
+  }
+}
