@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "../../public/build/",
+        "outDir": "./tscbuild/",
         "module": "commonjs",
         "target": "es5",
         "sourceMap": true,
@@ -12,6 +12,6 @@
         "lib": ["es6", "dom"]
     },
     "include": [
-        "./**/*"
+        "./src/**/*"
     ]
 }

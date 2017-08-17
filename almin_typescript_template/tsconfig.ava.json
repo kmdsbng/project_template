@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../testbuild",
+    "outDir": "./testbuild",
     "module": "commonjs",
     "target": "es2015",
     "noImplicitAny": true,
@@ -12,8 +12,12 @@
     "paths": {
       "*": [
         "*",
-        "src/*"
+        "./src/*"
       ]
     }
-  }
+  },
+  "include": [
+      "./src/**/*",
+      "./test/**/*"
+  ]
 }
