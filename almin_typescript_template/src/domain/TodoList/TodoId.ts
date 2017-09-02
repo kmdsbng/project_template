@@ -14,12 +14,24 @@ export default class TodoId {
     }
 
     checkValid() {
-        if (this.value == null) {
+        this.checkNull();
+        this.checkBlank();
+        this.checkTooLong();
+    }
+
+    private checkNull() {
+        if(this.value == null) {
             throw new TypeError("Invalid id : null");
         }
+    }
+
+    private checkBlank() {
         if (this.value.length == 0) {
             throw new TypeError("Invalid id : blank string");
         }
+    }
+
+    private checkTooLong() {
         if (this.value.length > 50) {
             throw new TypeError("Invalid id : too long");
         }
